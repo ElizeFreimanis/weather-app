@@ -87,7 +87,7 @@ function FullReport() {
                 hour={selectedDay.hour}
             />
 
-            <Link to='/' className='click-txt forecast'>
+            <Link to='/weather-app' className='click-txt forecast'>
                 Back to homepage
             </Link>
         </div>

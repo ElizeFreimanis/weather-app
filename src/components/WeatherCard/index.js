@@ -34,7 +34,7 @@ function WeatherCard({
                     onClick={() => removeFavourite(city)}
                 />
             )}
-            <Link to={`/${city}`}>
+            <Link to={`/weather-app/${city}`}>
                 <h1
                     className='city'
                     style={{ fontSize: city.length > 10 ? '0.95rem' : false }}
