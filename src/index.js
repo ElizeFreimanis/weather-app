@@ -9,7 +9,7 @@ import FullReport from './pages/FullReport';
 ReactDOM.render(
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<App />}>
+            <Route path='/weather-app' element={<App />}>
                 <Route index element={<Home />} />
                 <Route path=':city' element={<FullReport />} />
             </Route>
