@@ -11,7 +11,9 @@ function Home() {
     const [data, setData] = useState();
     const [search, setSearch] = useState('');
     const [q, setQ] = useState();
-    const [favourites, setFavourites] = useState([]);
+    const [favourites, setFavourites] = useState(
+        JSON.parse(localStorage.getItem('favourites')) || []
+    );
 
     useEffect(() => {
         if (q) {
@@ -46,9 +48,13 @@ function Home() {
 
     const removeFavourite = (city) => {
         if (favourites.includes(city)) {
-            setFavourites(favourites.filter((element) => city === !element));
+            setFavourites(favourites.filter((element) => city !== element));
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+    }, [favourites]);
 
     return (
         <div className='Home'>
@@ -78,8 +84,9 @@ function Home() {
                 ) : (
                     <h1 className='not-found'>Location not found</h1>
                 ))}
-            {!q && <h1 className='not-found'>Search for location</h1>}
-
+            {!q && favourites.length === 0 && (
+                <h1 className='not-found'>Search for location</h1>
+            )}
             {favourites.map((city) => (
                 <Favourite key={city} city={city} />
             ))}

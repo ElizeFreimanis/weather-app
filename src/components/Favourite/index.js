@@ -1,5 +1,6 @@
 import './styles.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { API_KEY } from '../../info';
 
 import FlexContainer from '../FlexContainer';
@@ -21,23 +22,28 @@ function Favourite({ city }) {
     }
 
     return (
-        <FlexContainer className='favourite'>
-            <div className='favourite-info'>
-                <div className='favourite-city'>{city}</div>
-                <div className='favourite-weather'>
-                    {data.current.condition.text}
+        <Link to={`/weather-app/${city}`}>
+            <FlexContainer className='favourite'>
+                <div className='favourite-info'>
+                    <div className='favourite-city'>{city}</div>
+                    <div className='favourite-weather'>
+                        {data.current.condition.text}
+                    </div>
                 </div>
-            </div>
-            <img
-                className='favourite-icn'
-                alt='favourite icon'
-                src={data.current.condition.icon.replace('64x64', '128x128')}
-            />
-            <div className='favourite-temp'>
-                {Math.round(data.current.temp_c)}
-                <Celcius />
-            </div>
-        </FlexContainer>
+                <img
+                    className='favourite-icn'
+                    alt='favourite icon'
+                    src={data.current.condition.icon.replace(
+                        '64x64',
+                        '128x128'
+                    )}
+                />
+                <div className='favourite-temp'>
+                    {Math.round(data.current.temp_c)}
+                    <Celcius />
+                </div>
+            </FlexContainer>
+        </Link>
     );
 }
 
