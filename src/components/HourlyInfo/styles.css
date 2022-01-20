@@ -1,0 +1,16 @@
+.hourly-info {
+    width: 50%;
+    padding-top: 0.8rem;
+    padding-left: 0.2rem;
+}
+
+.hourly-info-header {
+    font-size: 0.4rem;
+    font-weight: 100;
+    color: lightblue;
+}
+
+.hourly-info-text {
+    font-size: 0.45rem;
+    padding-top: 0.45rem;
+}

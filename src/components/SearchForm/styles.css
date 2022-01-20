@@ -1,0 +1,15 @@
+.search-bar {
+    line-height: 1rem;
+    background-color: rgb(19, 18, 37);
+    border: none;
+    border-radius: 0.2rem;
+    color: lightblue;
+    padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+    font-size: 0.56rem;
+    box-shadow: 0px 5px 20px black;
+    width: 100%;
+}
+
+.search-bar:focus {
+    outline: none;
+}

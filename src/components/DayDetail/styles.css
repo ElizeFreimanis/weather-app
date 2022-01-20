@@ -1,0 +1,26 @@
+.daycard {
+    margin-top: 0.7rem;
+    background-color: rgb(19, 18, 37);
+    box-shadow: 0px 5px 20px black;
+    border-radius: 0.2rem;
+    width: 31%;
+    padding: 0.22rem 0;
+}
+
+.daycard.active {
+    background-color: rgba(12, 35, 58, 1);
+}
+
+.day-icn {
+    width: 1.3rem;
+    margin: auto;
+}
+
+.day {
+    font-size: 0.45rem;
+}
+
+.temp {
+    font-size: 0.4rem;
+    padding-top: 0.05rem;
+}
