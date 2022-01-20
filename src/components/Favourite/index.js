@@ -1,21 +1,12 @@
 import './styles.css';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { API_KEY } from '../../info';
 
+import useForecast from '../../hooks/useForecast';
 import FlexContainer from '../FlexContainer';
 import Celcius from '../Celcius';
 
 function Favourite({ city }) {
-    const [data, setData] = useState();
-
-    useEffect(() => {
-        fetch(
-            `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=3&alerts=yes`
-        )
-            .then((response) => response.json())
-            .then(setData);
-    }, [city]);
+    const data = useForecast(city);
 
     if (!data) {
         return false;

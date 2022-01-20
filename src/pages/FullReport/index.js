@@ -1,28 +1,26 @@
 import './styles.css';
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 
-import { API_KEY } from '../../info';
-
+import useForecast from '../../hooks/useForecast';
+import useFavourites from '../../hooks/useFavourites';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import FlexContainer from '../../components/FlexContainer';
 
 import DayDetail from '../../components/DayDetail';
 import FullReportCard from '../../components/FullReportCard';
 
 function FullReport() {
-    const [data, setData] = useState();
     const [day, setDay] = useState(0);
 
     const { city } = useParams();
 
-    useEffect(() => {
-        fetch(
-            `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=3&alerts=yes`
-        )
-            .then((response) => response.json())
-            .then(setData);
-    }, [city]);
+    const { favourites, addFavourite, removeFavourite } = useFavourites();
+
+    const isFavourite = favourites.includes(city);
+
+    const data = useForecast(city);
 
     if (!data) {
         return false;
@@ -32,6 +30,18 @@ function FullReport() {
 
     return (
         <div>
+            {!isFavourite && (
+                <FaRegHeart
+                    className='heart'
+                    onClick={() => addFavourite(city)}
+                />
+            )}
+            {isFavourite && (
+                <FaHeart
+                    className='heart'
+                    onClick={() => removeFavourite(city)}
+                />
+            )}
             <h1 className='report-title'>Forecast report</h1>
             <h2 className='report-city'>{data.location.name}</h2>
 

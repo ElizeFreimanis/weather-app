@@ -2,28 +2,20 @@ import './styles.css';
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 
-import { API_KEY } from '../../info';
+import useFavourites from '../../hooks/useFavourites';
+import useForecast from '../../hooks/useForecast';
+
 import SearchForm from '../../components/SearchForm';
 import WeatherCard from '../../components/WeatherCard';
 import Favourite from '../../components/Favourite';
 
 function Home() {
-    const [data, setData] = useState();
     const [search, setSearch] = useState('');
     const [q, setQ] = useState();
-    const [favourites, setFavourites] = useState(
-        JSON.parse(localStorage.getItem('favourites')) || []
-    );
 
-    useEffect(() => {
-        if (q) {
-            fetch(
-                `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${q}&days=3&alerts=yes`
-            )
-                .then((response) => response.json())
-                .then(setData);
-        }
-    }, [q]);
+    const { favourites, addFavourite, removeFavourite } = useFavourites();
+
+    const data = useForecast(q);
 
     useEffect(() => {
         // shows city of current position if location is fetched
@@ -41,20 +33,6 @@ function Home() {
         setQ(search);
         setSearch('');
     };
-
-    const addFavourite = (city) => {
-        setFavourites([...favourites, city]);
-    };
-
-    const removeFavourite = (city) => {
-        if (favourites.includes(city)) {
-            setFavourites(favourites.filter((element) => city !== element));
-        }
-    };
-
-    useEffect(() => {
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-    }, [favourites]);
 
     return (
         <div className='Home'>
