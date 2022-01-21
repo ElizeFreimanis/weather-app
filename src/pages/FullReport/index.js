@@ -32,13 +32,13 @@ function FullReport() {
         <div>
             {!isFavourite && (
                 <FaRegHeart
-                    className='heart'
+                    className='heart-full-report'
                     onClick={() => addFavourite(city)}
                 />
             )}
             {isFavourite && (
                 <FaHeart
-                    className='heart'
+                    className='heart-full-report'
                     onClick={() => removeFavourite(city)}
                 />
             )}
@@ -78,7 +78,7 @@ function FullReport() {
             <FullReportCard
                 src={selectedDay.day.condition.icon.replace('64x64', '128x128')}
                 temp={
-                    day === 0
+                    day === '00'
                         ? Math.round(data.current.temp_c).toString().charAt(0)
                         : Math.round(selectedDay.day.avgtemp_c).toString()
                 }

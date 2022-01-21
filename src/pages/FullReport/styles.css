@@ -1,6 +1,14 @@
+.heart-full-report {
+    position: absolute;
+    right: 0.6rem;
+    top: 0.5rem;
+    width: 0.8rem;
+}
+
 .report-title {
     font-size: 0.8rem;
     font-weight: 400;
+    margin-top: 0.6rem;
 }
 
 .report-city {
