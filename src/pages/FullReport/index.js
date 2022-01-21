@@ -89,7 +89,8 @@ function FullReport() {
                     day === 0 &&
                     `Feels like ${Math.round(data.current.feelslike_c)}`
                 }
-                hour={selectedDay.hour}
+                hours={selectedDay.hour}
+                initialHour={day === 0 ? new Date().getHours() : 0}
             />
 
             <Link to='/weather-app' className='click-txt forecast'>

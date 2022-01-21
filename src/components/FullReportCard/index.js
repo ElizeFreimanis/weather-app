@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './styles.css';
 
@@ -21,12 +21,14 @@ function FullReportCard({
     sunUp,
     sunDown,
     feelsLike,
-    hour,
+    hours,
+    initialHour,
 }) {
-    const day = new Date();
-    const h = day.getHours();
+    const [selectedHour, setSelectedHour] = useState();
 
-    const [selectedHour, setSelectedHour] = useState(hour[h]);
+    useEffect(() => {
+        setSelectedHour(hours[initialHour]);
+    }, [hours, initialHour]);
 
     return (
         <div className='full-report-card'>
@@ -50,35 +52,40 @@ function FullReportCard({
                 humidity={humidity}
             />
             <h2 className='hourly-title'>Hourly reports</h2>
-            <div className='hourly-ctn'>
-                {hour.map((object) => (
-                    <HourlyReport
-                        key={object.time}
-                        hourlyTemp={Math.round(object.temp_c)}
-                        hour={moment(object.time).format('HH')}
-                        onClick={() => setSelectedHour(object)}
-                        active={selectedHour === object}
+            {selectedHour && (
+                <div className='hourly-ctn'>
+                    {hours.map((object) => (
+                        <HourlyReport
+                            key={object.time}
+                            hourlyTemp={Math.round(object.temp_c)}
+                            hour={moment(object.time).format('HH')}
+                            onClick={() => setSelectedHour(object)}
+                            active={selectedHour === object}
+                            hours={hours}
+                        />
+                    ))}
+                </div>
+            )}
+            {selectedHour && (
+                <FlexContainer className='hourly-info-ctn'>
+                    <HourlyInfo
+                        title='Feels like'
+                        text={`${Math.round(selectedHour.feelslike_c)}°C`}
                     />
-                ))}
-            </div>
-            <FlexContainer className='hourly-info-ctn'>
-                <HourlyInfo
-                    title='Feels like'
-                    text={`${Math.round(selectedHour.feelslike_c)}°C`}
-                />
-                <HourlyInfo
-                    title='Wind'
-                    text={`${Math.round(selectedHour.wind_kph)}km/h`}
-                />
-                <HourlyInfo
-                    title='Humidity'
-                    text={`${selectedHour.humidity}%`}
-                />
-                <HourlyInfo
-                    title='Precipitation'
-                    text={`${Math.round(selectedHour.precip_mm)}mm`}
-                />
-            </FlexContainer>
+                    <HourlyInfo
+                        title='Wind'
+                        text={`${Math.round(selectedHour.wind_kph)}km/h`}
+                    />
+                    <HourlyInfo
+                        title='Humidity'
+                        text={`${selectedHour.humidity}%`}
+                    />
+                    <HourlyInfo
+                        title='Precipitation'
+                        text={`${Math.round(selectedHour.precip_mm)}mm`}
+                    />
+                </FlexContainer>
+            )}
         </div>
     );
 }
