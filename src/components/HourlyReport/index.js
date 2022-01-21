@@ -5,6 +5,7 @@ import Celcius from '../Celcius';
 function HourlyReport({ hourlyTemp, hour, onClick, active }) {
     const ref = useRef();
 
+    // make the current hour central in hourly report
     useEffect(() => {
         if (active) {
             ref.current.scrollIntoView({ inline: 'center', block: 'nearest' });

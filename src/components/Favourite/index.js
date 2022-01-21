@@ -16,7 +16,14 @@ function Favourite({ city }) {
         <Link to={`/weather-app/${city}`}>
             <FlexContainer className='favourite'>
                 <div className='favourite-info'>
-                    <div className='favourite-city'>{city}</div>
+                    <div
+                        className='favourite-city'
+                        style={{
+                            fontSize: city.length > 10 ? '0.55rem' : false,
+                        }}
+                    >
+                        {city}
+                    </div>
                     <div className='favourite-weather'>
                         {data.current.condition.text}
                     </div>

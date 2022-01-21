@@ -2,8 +2,7 @@ import './styles.css';
 
 import { Link } from 'react-router-dom';
 
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
-
+import FavouriteHeart from '../FavouriteHeart';
 import Detail from '../Detail';
 import FlexContainer from '../FlexContainer';
 
@@ -22,18 +21,13 @@ function WeatherCard({
 }) {
     return (
         <div className='weather-card'>
-            {!isFavourite && (
-                <FaRegHeart
-                    className='heart'
-                    onClick={() => addFavourite(city)}
-                />
-            )}
-            {isFavourite && (
-                <FaHeart
-                    className='heart'
-                    onClick={() => removeFavourite(city)}
-                />
-            )}
+            <FavouriteHeart
+                addFavourite={addFavourite}
+                isFavourite={isFavourite}
+                removeFavourite={removeFavourite}
+                city={city}
+                className='heart'
+            />
             <Link to={`/weather-app/${city}`}>
                 <h1
                     className='city'

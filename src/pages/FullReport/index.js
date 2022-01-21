@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import useForecast from '../../hooks/useForecast';
 import useFavourites from '../../hooks/useFavourites';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import FavouriteHeart from '../../components/FavouriteHeart';
 import FlexContainer from '../../components/FlexContainer';
 
 import DayDetail from '../../components/DayDetail';
@@ -30,18 +30,13 @@ function FullReport() {
 
     return (
         <div>
-            {!isFavourite && (
-                <FaRegHeart
-                    className='heart-full-report'
-                    onClick={() => addFavourite(city)}
-                />
-            )}
-            {isFavourite && (
-                <FaHeart
-                    className='heart-full-report'
-                    onClick={() => removeFavourite(city)}
-                />
-            )}
+            <FavouriteHeart
+                addFavourite={addFavourite}
+                isFavourite={isFavourite}
+                removeFavourite={removeFavourite}
+                city={city}
+                className='heart-full-report'
+            />
             <h1 className='report-title'>Forecast report</h1>
             <h2 className='report-city'>{data.location.name}</h2>
 
