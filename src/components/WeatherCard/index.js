@@ -28,7 +28,7 @@ function WeatherCard({
                 city={city}
                 className='heart'
             />
-            <Link to={`/weather-app/${city}`}>
+            <Link to={`/${city}`}>
                 <h1
                     className='city'
                     style={{ fontSize: city.length > 10 ? '0.95rem' : false }}

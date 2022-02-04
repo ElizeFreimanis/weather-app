@@ -13,7 +13,7 @@ function Favourite({ city }) {
     }
 
     return (
-        <Link to={`/weather-app/${city}`}>
+        <Link to={`/${city}`}>
             <FlexContainer className='favourite'>
                 <div className='favourite-info'>
                     <div

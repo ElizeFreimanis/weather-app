@@ -93,7 +93,7 @@ function FullReport() {
                 initialHour={day === 0 ? new Date().getHours() : 0}
             />
 
-            <Link to='/weather-app' className='click-txt forecast'>
+            <Link to='/' className='click-txt forecast'>
                 Back to homepage
             </Link>
         </div>
